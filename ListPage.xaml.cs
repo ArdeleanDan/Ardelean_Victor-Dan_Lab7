@@ -55,5 +55,9 @@ public partial class ListPage : ContentPage
 
         listView.ItemsSource = await App.Database.GetListProductsAsync(shopList.ID);
     }
-
+    var items = await App.Database.GetShopsAsync();
+    ShopPicker.ItemsSource = (System.Collections.IList) items;
+    ShopPicker.ItemDisplayBinding = new Binding("ShopDetails");
+    Shop selectedShop = (ShopPicker.SelectedItem as Shop);
+    slist.ShopID = selectedShop.ID;
 }
